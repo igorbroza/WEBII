@@ -152,4 +152,34 @@ Route::prefix('/nota')->group(function(){
     return $alunos;
     });
 
+    Route::get('/lancar/{nota}/{matricula}/{nome?}', function($nota, $matricula, $nome=null){
+        $dados = array(
+            array("matricula" => 1, "nome" => "Igor Broza", "nota" => 2),
+            array("matricula" => 2, "nome" => "Gil Eduardo", "nota" => 2),
+            array("matricula" => 3, "nome" => "Murilo Amancio", "nota" => 2),
+            array("matricula" => 4, "nome" => "Lucas Kayure", "nota" => 2),
+            array("matricula" => 5, "nome" => "Daph Alves", "nota" => 2),
+        );
+
+        $indice = array_search($matricula, array_column($dados, 'matricula'));
+        
+
+        $dados[$indice]['nota'] = $nota;
+        
+
+        // Armazena os dados do cliente para o índice obtido
+        $dados = $aux[$indice];
+
+        $alunos = "<ul>";
+
+        $cont = 0;
+
+        foreach($dados as $arr) {
+            $alunos .= "<li>".$arr['nota']."</li>";
+            $cont++;
+        }
+
+        return $alunos;
+    });
+
 });
