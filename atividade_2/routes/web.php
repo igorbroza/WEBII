@@ -62,4 +62,23 @@ Route::prefix('/aluno')->group(function() {
 
     return $alunos;
     });
+
+    Route::get('/matricula/{matricula}', function ($matricula){
+        $dados = array(
+            "Igor Broza",
+            "Gil Eduardo",
+            "Murilo Amancio",
+            "Lucas Kayure",
+            "Daph Alves"
+            );
+
+        $cont = 0;
+
+        foreach($dados as $nome) {
+            $alunos .= "<li>$nome</li>";
+            $cont++;
+        }
+
+        return $alunos;
+    });
 });
